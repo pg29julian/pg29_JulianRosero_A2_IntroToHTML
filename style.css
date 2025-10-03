@@ -1,0 +1,218 @@
+/* Tag Selectors */
+
+/*  Black Deep: #0a0a0a
+    Black: #111111
+    Black Light: #1c1c1c
+
+    Blue Dark: #00a3d9
+    Blue: #00f0ff
+    Blue Light: #66faff
+
+    Orange Dark: #ff6600
+    Orange: #ff8800
+    Orange Light: #ffbb66
+*/
+
+@font-face {
+    font-family: "Orbitron";
+    src: url("fonts/Orbitron-VariableFont_wght.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    margin: 0px;
+    height: 100vh;
+    background-color: #0a0a0a;
+    background-image: linear-gradient(#ff8800 1px, transparent 1px), linear-gradient(90deg, #ff8800 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px;
+    background-position: center;
+    color: #66faff;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+h3 {
+    text-transform: uppercase;
+    margin: 2px;
+    padding: 2px;
+    color: black;
+    font-weight: bold;
+}
+
+h4 {
+    text-transform: uppercase;
+}
+
+p {
+    margin: 3px;
+    padding: 3px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    background-color: #111111;
+    border-style: solid;
+    border-color: #ff8800;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 18px;
+    color: #00f0ff;
+    text-shadow: 0 0 7px #66faff;
+    font-family: 'Orbitron', sans-serif;
+}
+
+    button:hover {
+        background-color: #1c1c1c;
+        border-color: #ffbb66;
+        color: #ff8800;
+        text-shadow: 0 0 7px #ff6600;
+    }
+
+/* Class Selectors */
+
+.flex-container {
+    display: flex;
+}
+
+.header-container {
+    background-color: #111111;
+    border-style: solid;
+    border-width: 4px;
+    border-left-color: #00a3d9;
+    border-top-color: #00a3d9;
+    border-right-color: #66faff;
+    border-bottom-color: #66faff;
+    padding: 20px;
+    margin: 25px;
+    text-align: center;
+    font-size: large;
+    color: #ff8800;
+    text-shadow: 0 0 7px #ff6600;
+}
+
+header.flex-container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-container {
+    background-color: #111111;
+    border-style: solid;
+    border-width: 4px;
+    border-left-color: #00a3d9;
+    border-top-color: #00a3d9;
+    border-right-color: #66faff;
+    border-bottom-color: #66faff;
+    padding: 0;
+    margin: 25px;
+    height: 500px;
+    color: #00f0ff;
+}
+
+.footer-container {
+    background-color: #111111;
+    border-style: solid;
+    border-width: 4px;
+    border-left-color: #00a3d9;
+    border-top-color: #00a3d9;
+    border-right-color: #66faff;
+    border-bottom-color: #66faff;
+    padding: 20px;
+    margin: 25px;
+    text-align: center;
+    font-size: large;
+    color: #ff8800;
+    text-shadow: 0 0 7px #ff6600;
+}
+
+footer.flex-container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.set-up-buttons-container {
+    background-color: #111111;
+    border-style: solid;
+    border-width: 0px;
+    border-bottom-width: 4px;
+    border-left-color: #00a3d9;
+    border-top-color: #00a3d9;
+    border-right-color: #66faff;
+    border-bottom-color: #66faff;
+    padding: 15px;
+    margin: 0;
+    text-align: center;
+    font-size: large;
+    color: #ff8800;
+}
+
+.game-container {
+    background-color: #111111;
+    border-style: solid;
+    border-width: 0px;
+    border-left-color: #00a3d9;
+    border-top-color: #00a3d9;
+    border-right-color: #66faff;
+    border-bottom-color: #66faff;
+    padding: 30px;
+    margin: 0;
+    text-align: center;
+    font-size: large;
+    color: #ff8800;
+}
+
+.game-container.flex-container {
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+
+.nav-list.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+    .nav-list li {
+        display: inline;
+    }
+
+/* ID Selectors */
+
+#copy-notice-section {
+    color: #ff8800;
+    text-shadow: 0 0 7px #ff6600;
+}
