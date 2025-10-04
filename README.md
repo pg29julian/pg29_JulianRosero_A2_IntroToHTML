@@ -1,5 +1,8 @@
 # pg29_JulianRosero_A2_IntroToHTML
 
+Implemented by: PG29 - Julian Rosero
+Last Updated -> 10/03/2025
+
 ## About HTML Implementation
 
 The page uses a simple structure, contains a header, a main content space and a foteer. Each section is divided in a <div> tag and makes use of its respective tags and classes to diferentiate the page regions.
