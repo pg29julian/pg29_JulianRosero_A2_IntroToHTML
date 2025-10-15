@@ -40,6 +40,7 @@ class Minesweeper {
 
         // Reset elements
 
+        this.revealedTiles = 0;
         this.cellsNumber = 0;
         this.cells = [];
         this.mines = [];
