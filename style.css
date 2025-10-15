@@ -201,7 +201,8 @@ button {
     border-bottom-color: #66faff;
     margin-top: 10px;
     padding: 5px;
-    min-width: 60px;
+    min-width: 70px;
+    min-height: 70px;
     text-align: center;
     font-size: small;
     color: #111111;
@@ -220,6 +221,7 @@ button {
     margin-top: 10px;
     padding: 5px;
     min-width: 70px;
+    min-height: 70px;
     text-align: center;
     font-size: small;
 }
@@ -293,8 +295,8 @@ button {
 /* Cell class */
 
 .cell {
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -304,7 +306,7 @@ button {
     font-size: 1em;
     background-color: #00f0ff;
     border-style: solid;
-    border-width: 4px;
+    border-width: 5px;
     border-left-color: #00a3d9;
     border-top-color: #00a3d9;
     border-right-color: #66faff;
@@ -314,8 +316,8 @@ button {
 /* Revealed Cell class */
 
 .revealed-cell {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     border-width: 1px;
 }
 

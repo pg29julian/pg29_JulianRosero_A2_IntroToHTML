@@ -35,6 +35,7 @@ class Minesweeper {
         this.init(0);
     };
 
+    // Initialize the game
     init = (levelIndex) => {
 
         // Reset elements
@@ -72,8 +73,8 @@ class Minesweeper {
             this.rows = 16;
         };
 
-        this.boardElement.style.gridTemplateColumns = `repeat(${this.columns}, ${25}px)`;
-        this.boardElement.style.gridTemplateRows = `repeat(${this.rows}, ${25}px)`;
+        this.boardElement.style.gridTemplateColumns = `repeat(${this.columns}, ${27}px)`;
+        this.boardElement.style.gridTemplateRows = `repeat(${this.rows}, ${27}px)`;
 
         // Reset board
         this.board = Array(this.cellsNumber).fill('');
@@ -110,60 +111,101 @@ class Minesweeper {
         this.expertButton.addEventListener('click', () => this.newGame(2));
     };
 
+    // Generates mines in the board
     generateMines(index) {
 
-        // Mark clicked index as safe
-        // Add it to safe tiles list
+        // Add clicked cell to safe cells list
+        this.safeCells.push(index);
 
         let minesPlaced = 0;
         while (minesPlaced < this.amountOfMines) {
 
             // Select a random tile, check that is not in the safe tile or occupied by another mine
-            // Put mine in place
-
-            minesPlaced++;
-        }
+            let newIndex = this.getRandomInt(this.cells.length)
+            if (!this.safeCells.includes(newIndex) && !this.mines.includes(newIndex)) {
+                // Put mine in available place
+                this.mines.push(newIndex);
+                minesPlaced++;
+            };
+        };
     };
 
-    isMine = (index) => {
-        // Return true if an index is mine
-    };
-
+    // Starts a new game with the given difficulty setting
     newGame = (index) => {
         this.init(index);
     };
 
-    resetGame = () => {
-
-    };
-
+    // Handles left click functionality
     handleClick = (index) => {
-        if (this.board[index] || this.isGameOver) return;
 
+        // If game is over return
+        if (this.isGameOver) return;
+
+        // If first click, generate mines
         if (!this.minesGenerated) {
             this.generateMines(index);
             this.minesGenerated = true;
-        }
+        };
 
+        // Get evaluated tile
         let tile = this.cells[index];
 
+        // Do not evaluate if tile is flagged
+        if (tile.innerText == "🚩") return;
+
+        // Check if tile is a bomb
+        if (this.mines.includes(index)) {
+            tile.classList.add('mine-cell');
+            tile.innerText = "💣";
+            this.isGameOver = true;
+        }
+        else {
+            // Reveal tile and add classes depending on near mines
+            tile.classList.add('revealed-cell');
+
+            this.revealedTiles++;
+
+            // If all safe tiles revealed, end game
+            if (this.revealedTiles == (this.cells.length - this.amountOfMines)) this.isGameOver = true;
+        };
     };
 
-    // Handles flagging functionality
+    // Handles right click (flagging) functionality
     handleLeftClick = (index) => {
 
-        if (this.board[index] || this.isGameOver) return;
+        // If game is over return
+        if (this.isGameOver) return;
 
+        // Get evaluated tile
         let tile = this.cells[index];
 
+        // Check if player is not able to flag another tile
+        if (this.amountOfMines <= 0) {
+            if (tile.innerText == "🚩") {
+                tile.classList.remove('flagged-cell');
+                tile.innerText = "";
+                this.amountOfMines++;
+                return;
+            }
+            else return;
+        };
+
+        // Check if tile is not flagged
         if (tile.innerText == "") {
+
             tile.classList.add('flagged-cell');
             tile.innerText = "🚩";
+            this.amountOfMines--;
         }
         else if (tile.innerText == "🚩") {
+
             tile.classList.remove('flagged-cell');
             tile.innerText = "";
-        }
+            this.amountOfMines++;
+        };
+
+        // Update mines counter
+        document.getElementById('mines-count').innerText = this.amountOfMines;
     };
 
     cleanCell = (index) => {
@@ -174,21 +216,23 @@ class Minesweeper {
         // Check adjacent tiles, clean space till it founds a tile with a mine
     };
 
+    revealAllBombs = () => {
+    };
+
     // Converts 1D index → Row coordinate
-    toX(index) {
+    toX = (index) => {
         return index % this.rows;
     };
 
     // Converts 1D index → Column coordinate
-    toY(index) {
+    toY = (index) => {
         return Math.floor(index / this.columns);
     };
 
-}
-
-class Timer
-{
-
+    // Returns a random int in the given max range
+    getRandomInt = (max) => {
+        return Math.floor(Math.random() * max);
+    };
 }
 
 new Minesweeper();
