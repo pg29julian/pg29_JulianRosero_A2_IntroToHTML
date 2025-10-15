@@ -189,6 +189,8 @@ button {
     color: #ff8800;
 }
 
+/* Game info container class */
+
 .game-info-container {
     background-color: #00f0ff;
     border-style: solid;
@@ -199,10 +201,13 @@ button {
     border-bottom-color: #66faff;
     margin-top: 10px;
     padding: 5px;
+    min-width: 60px;
     text-align: center;
     font-size: small;
     color: #111111;
 }
+
+/* Game empty container class */
 
 .game-empty-container {
     background-color: #111111;
@@ -214,14 +219,22 @@ button {
     border-bottom-color: #66faff;
     margin-top: 10px;
     padding: 5px;
+    min-width: 70px;
     text-align: center;
     font-size: small;
-    color: #111111;
 }
 
 /* Game container class */
 
 .game-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Game container border class */
+
+.game-container-border {
     background-color: #111111;
     border-style: solid;
     border-width: 6px;
@@ -231,6 +244,7 @@ button {
     border-bottom-color: #66faff;
     padding: 5px;
     margin: 10px;
+    margin-top: 0px;
     text-align: center;
     font-size: large;
     color: #ff8800;
@@ -258,6 +272,8 @@ button {
         display: inline;
     }
 
+/* Gameplay list class */
+
 .gameplay-list {
     list-style: none;
     padding: 0;
@@ -274,6 +290,8 @@ button {
 
 /* Gameplay classes */
 
+/* Cell class */
+
 .cell {
     width: 15px;
     height: 15px;
@@ -283,7 +301,7 @@ button {
     cursor: pointer;
     padding: 1px;
     margin: 1px;
-    font-size: 2em;
+    font-size: 1em;
     background-color: #00f0ff;
     border-style: solid;
     border-width: 4px;
@@ -293,11 +311,15 @@ button {
     border-bottom-color: #66faff;
 }
 
+/* Revealed Cell class */
+
 .revealed-cell {
     width: 22px;
     height: 22px;
     border-width: 1px;
 }
+
+/* Revaled cell classes depending on adjacent mines */
 
 .revealed-x1-cell {
     color: #00ffff;
@@ -331,6 +353,8 @@ button {
     color: #ffffff;
 }
 
+/* Flagged Cell class */
+
 .flagged-cell {
     background-color: #ff8800;
     border-left-color: #ff6600;
@@ -338,6 +362,8 @@ button {
     border-right-color: #ffbb66;
     border-bottom-color: #ffbb66;
 }
+
+/* Mine Cell class */
 
 .mine-cell {
     width: 22px;

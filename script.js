@@ -1,16 +1,22 @@
-
+﻿
 class Minesweeper {
     constructor() {
 
         // Variables
 
-        this.amountOfMines = 10;
+        this.amountOfMines = 0;
+
         this.cellsNumber = 0;
+        this.rows = 0;
+        this.columns = 0;
+
         this.board = Array(this.cellsNumber).fill('');
         this.cells = [];
+
         this.mines = [];
         this.safeCells = [];
 
+        this.revealedTiles = 0;
         this.minesGenerated = false;
         this.isGameOver = false;
 
@@ -21,7 +27,6 @@ class Minesweeper {
         // Buttons
 
         this.newGameButton = document.querySelector('#new_game_button');
-        this.resetButton = document.querySelector('#reset_button');
 
         this.beginnerButton = document.querySelector('#beginner_button');
         this.mediumButton = document.querySelector('#medium_button');
@@ -32,32 +37,50 @@ class Minesweeper {
 
     init = (levelIndex) => {
 
-        // Init config depending on difficulty setting
-        this.cellsNumber = 0;
-        if (levelIndex == 0) {
-            this.amountOfMines = 10;
-            this.cellsNumber = 81;
-            this.boardElement.style.gridTemplateColumns = `repeat(${9}, ${25}px)`;
-            this.boardElement.style.gridTemplateRows = `repeat(${9}, ${25}px)`;
-        } else if (levelIndex == 1) {
-            this.amountOfMines = 30;
-            this.cellsNumber = 256;
-            this.boardElement.style.gridTemplateColumns = `repeat(${16}, ${25}px)`;
-            this.boardElement.style.gridTemplateRows = `repeat(${16}, ${25}px)`;
-        } else if (levelIndex == 2) {
-            this.amountOfMines = 50;
-            this.cellsNumber = 400;
-            this.boardElement.style.gridTemplateColumns = `repeat(${25}, ${25}px)`;
-            this.boardElement.style.gridTemplateRows = `repeat(${16}, ${25}px)`;
-        };
-
         // Reset elements
-        this.board = Array(this.cellsNumber).fill('');
-        this.boardElement.innerHTML = '';
 
+        this.cellsNumber = 0;
         this.cells = [];
         this.mines = [];
         this.safeCells = [];
+
+        this.isGameOver = false;
+
+        // Init config depending on difficulty setting
+        if (levelIndex == 0) {
+
+            this.amountOfMines = 10;
+            this.cellsNumber = 81;
+
+            this.columns = 9;
+            this.rows = 9;
+
+        } else if (levelIndex == 1) {
+
+            this.amountOfMines = 30;
+            this.cellsNumber = 256;
+
+            this.columns = 16;
+            this.rows = 16;
+
+        } else if (levelIndex == 2) {
+
+            this.amountOfMines = 50;
+            this.cellsNumber = 400;
+
+            this.columns = 25;
+            this.rows = 16;
+        };
+
+        this.boardElement.style.gridTemplateColumns = `repeat(${this.columns}, ${25}px)`;
+        this.boardElement.style.gridTemplateRows = `repeat(${this.rows}, ${25}px)`;
+
+        // Reset board
+        this.board = Array(this.cellsNumber).fill('');
+        this.boardElement.innerHTML = '';
+
+        // Fill board info
+        document.getElementById('mines-count').innerText = this.amountOfMines;
 
         // Fill board
         this.board.forEach((_, index) => {
@@ -80,8 +103,7 @@ class Minesweeper {
         });
 
         // Add event listeners
-        this.newGameButton.addEventListener('click', () => this.newGame);
-        this.resetButton.addEventListener('click', () => this.resetGame);
+        this.newGameButton.addEventListener('click', () => this.newGame(0));
 
         this.beginnerButton.addEventListener('click', () => this.newGame(0));
         this.mediumButton.addEventListener('click', () => this.newGame(1));
@@ -101,11 +123,11 @@ class Minesweeper {
 
             minesPlaced++;
         }
-    }
+    };
 
     isMine = (index) => {
         // Return true if an index is mine
-    }
+    };
 
     newGame = (index) => {
         this.init(index);
@@ -123,23 +145,45 @@ class Minesweeper {
             this.minesGenerated = true;
         }
 
-        this.cells[index].style.width = `22px`;
-        this.cells[index].style.height = `22px`;
-        this.cells[index].style.borderWidth = `1px`;
+        let tile = this.cells[index];
 
     };
 
+    // Handles flagging functionality
     handleLeftClick = (index) => {
-        // Mark Cell as mine
+
+        if (this.board[index] || this.isGameOver) return;
+
+        let tile = this.cells[index];
+
+        if (tile.innerText == "") {
+            tile.classList.add('flagged-cell');
+            tile.innerText = "🚩";
+        }
+        else if (tile.innerText == "🚩") {
+            tile.classList.remove('flagged-cell');
+            tile.innerText = "";
+        }
     };
 
     cleanCell = (index) => {
         // Clean a cell
-    }
+    };
 
     checkNeighbours = (index) => {
         // Check adjacent tiles, clean space till it founds a tile with a mine
-    }
+    };
+
+    // Converts 1D index → Row coordinate
+    toX(index) {
+        return index % this.rows;
+    };
+
+    // Converts 1D index → Column coordinate
+    toY(index) {
+        return Math.floor(index / this.columns);
+    };
+
 }
 
 class Timer
