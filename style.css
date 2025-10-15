@@ -9,6 +9,15 @@
     Orange Dark: #ff6600
     Orange: #ff8800
     Orange Light: #ffbb66
+
+    Neon Cyan: #00ffff	
+    Electric Green: #00ff9f	
+    Magenta Glow: #ff00ff	
+    Deep neon Blue: #00aaff	
+	Hot Pink/Red: #ff0066
+	Acid Green: #aaff00
+	Neon Orange: #ff8800
+	White Glow: #ffffff
 */
 
 /* Tag Selectors */
@@ -180,6 +189,36 @@ button {
     color: #ff8800;
 }
 
+.game-info-container {
+    background-color: #00f0ff;
+    border-style: solid;
+    border-width: 6px;
+    border-left-color: #00a3d9;
+    border-top-color: #00a3d9;
+    border-right-color: #66faff;
+    border-bottom-color: #66faff;
+    margin-top: 10px;
+    padding: 5px;
+    text-align: center;
+    font-size: small;
+    color: #111111;
+}
+
+.game-empty-container {
+    background-color: #111111;
+    border-style: solid;
+    border-width: 6px;
+    border-left-color: #00a3d9;
+    border-top-color: #00a3d9;
+    border-right-color: #66faff;
+    border-bottom-color: #66faff;
+    margin-top: 10px;
+    padding: 5px;
+    text-align: center;
+    font-size: small;
+    color: #111111;
+}
+
 /* Game container class */
 
 .game-container {
@@ -219,6 +258,22 @@ button {
         display: inline;
     }
 
+.gameplay-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+
+    .gameplay-list.flex-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-grow: 1;
+    }
+
+/* Gameplay classes */
+
 .cell {
     width: 15px;
     height: 15px;
@@ -236,6 +291,63 @@ button {
     border-top-color: #00a3d9;
     border-right-color: #66faff;
     border-bottom-color: #66faff;
+}
+
+.revealed-cell {
+    width: 22px;
+    height: 22px;
+    border-width: 1px;
+}
+
+.revealed-x1-cell {
+    color: #00ffff;
+}
+
+.revealed-x2-cell {
+    color: #00ff9f;
+}
+
+.revealed-x3-cell {
+    color: #ff00ff;
+}
+
+.revealed-x4-cell {
+    color: #00aaff;
+}
+
+.revealed-x5-cell {
+    color: #ff0066;
+}
+
+.revealed-x6-cell {
+    color: #aaff00;
+}
+
+.revealed-x7-cell {
+    color: #ff8800;
+}
+
+.revealed-x8-cell {
+    color: #ffffff;
+}
+
+.flagged-cell {
+    background-color: #ff8800;
+    border-left-color: #ff6600;
+    border-top-color: #ff6600;
+    border-right-color: #ffbb66;
+    border-bottom-color: #ffbb66;
+}
+
+.mine-cell {
+    width: 22px;
+    height: 22px;
+    border-width: 1px;
+    background-color: #ff8800;
+    border-left-color: #ff6600;
+    border-top-color: #ff6600;
+    border-right-color: #ffbb66;
+    border-bottom-color: #ffbb66;
 }
 
 /* ID Selectors */
