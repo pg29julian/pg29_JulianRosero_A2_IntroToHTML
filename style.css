@@ -10,14 +10,14 @@
     Orange: #ff8800
     Orange Light: #ffbb66
 
-    Neon Cyan: #00ffff	
-    Electric Green: #00ff9f	
-    Magenta Glow: #ff00ff	
-    Deep neon Blue: #00aaff	
-	Hot Pink/Red: #ff0066
-	Acid Green: #aaff00
-	Neon Orange: #ff8800
-	White Glow: #ffffff
+    Neon Yellow: #fff200	
+    Vivid Orange: #ff6b00	
+    Electric Purple: #8000ff	
+    Crimson Red: #d1003f	
+    Bright Magenta: #ff1ec8	
+    Deep Indigo: #2b00ff	
+    Acid Lime: #7aff00	
+    Pure Black: #000000
 */
 
 /* Tag Selectors */
@@ -324,35 +324,35 @@ button {
 /* Revaled cell classes depending on adjacent mines */
 
 .revealed-x1-cell {
-    color: #00ffff;
+    color: #fff200;
 }
 
 .revealed-x2-cell {
-    color: #00ff9f;
+    color: #ff6b00;
 }
 
 .revealed-x3-cell {
-    color: #ff00ff;
+    color: #8000ff;
 }
 
 .revealed-x4-cell {
-    color: #00aaff;
+    color: #d1003f;
 }
 
 .revealed-x5-cell {
-    color: #ff0066;
+    color: #ff1ec8;
 }
 
 .revealed-x6-cell {
-    color: #aaff00;
+    color: #2b00ff;
 }
 
 .revealed-x7-cell {
-    color: #ff8800;
+    color: #7aff00;
 }
 
 .revealed-x8-cell {
-    color: #ffffff;
+    color: #000000;
 }
 
 /* Flagged Cell class */

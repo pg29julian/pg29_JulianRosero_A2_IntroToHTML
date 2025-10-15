@@ -154,19 +154,24 @@ class Minesweeper {
         if (tile.innerText == "🚩") return;
 
         // Check if tile is a bomb
-        if (this.mines.includes(index)) {
-            tile.classList.add('mine-cell');
-            tile.innerText = "💣";
+        if (this.checkCell(index)) {
+
+            this.revealAllMines();
             this.isGameOver = true;
+
+            //TODO: AT YOU LOST POP UP
         }
         else {
-            // Reveal tile and add classes depending on near mines
-            tile.classList.add('revealed-cell');
 
+            this.cleanCell(index);
             this.revealedTiles++;
 
             // If all safe tiles revealed, end game
-            if (this.revealedTiles == (this.cells.length - this.amountOfMines)) this.isGameOver = true;
+            if (this.revealedTiles == (this.cells.length - this.amountOfMines)) {
+
+                this.isGameOver = true;
+                //TODO: AT YOU WON POP UP
+            };
         };
     };
 
@@ -208,25 +213,110 @@ class Minesweeper {
         document.getElementById('mines-count').innerText = this.amountOfMines;
     };
 
+    // Cleans a cell
     cleanCell = (index) => {
-        // Clean a cell
+
+        // Add revealed class to the cell
+        let tile = this.cells[index];
+        tile.classList.add('revealed-cell');
+
+        // Add other classes depending on adjacent mines
+        let neighbours = this.checkNeighbours(index);
+        switch (neighbours) {
+            case 1:
+                tile.classList.add('revealed-x1-cell');
+                tile.innerText = "1";
+                break;
+            case 2:
+                tile.classList.add('revealed-x2-cell');
+                tile.innerText = "2";
+                break;
+            case 3:
+                tile.classList.add('revealed-x3-cell');
+                tile.innerText = "3";
+                break;
+            case 4:
+                tile.classList.add('revealed-x4-cell');
+                tile.innerText = "4";
+                break;
+            case 5:
+                tile.classList.add('revealed-x5-cell');
+                tile.innerText = "5";
+                break;
+            case 6:
+                tile.classList.add('revealed-x6-cell');
+                tile.innerText = "6";
+                break;
+            case 7:
+                tile.classList.add('revealed-x7-cell');
+                tile.innerText = "7";
+                break;
+            case 8:
+                tile.classList.add('revealed-x8-cell');
+                tile.innerText = "8";
+                break;
+        }
     };
 
+    // Checks if a cell has a mine
+    checkCell = (index) => {
+        if (this.mines.includes(index)) return true;
+        else return false;
+    };
+
+    // Checks the cells around a certain cell
     checkNeighbours = (index) => {
-        // Check adjacent tiles, clean space till it founds a tile with a mine
+
+        let adjacentCells = this.getAdjacentCells(index);
+
+        let foundMines = 0;
+        adjacentCells.forEach((cellIndex, _) => {
+            if (this.checkCell(cellIndex)) foundMines++;
+        });
+
+        return foundMines;
     };
 
-    revealAllBombs = () => {
+    // Reveals all hidden mines in the board
+    revealAllMines = () => {
+
+        this.cells.forEach((tile, index) => {
+            if (this.mines.includes(index)) {
+                tile.classList.add('mine-cell');
+                tile.innerText = "💣";
+            };
+        });
     };
 
-    // Converts 1D index → Row coordinate
-    toX = (index) => {
-        return index % this.rows;
-    };
+    // Returns the adjacent cells indexes of a certain cell index
+    getAdjacentCells = (index) => {
 
-    // Converts 1D index → Column coordinate
-    toY = (index) => {
-        return Math.floor(index / this.columns);
+        const adjacent = [];
+
+        const row = Math.floor(index / this.columns);
+        const col = index % this.columns;
+
+        // Iterate over the 8 possible directions
+        for (let r = -1; r <= 1; r++) {
+            for (let c = -1; c <= 1; c++) {
+
+                // Skip self
+                if (r === 0 && c === 0) continue;
+
+                const newRow = row + r;
+                const newCol = col + c;
+
+                // Check bounds
+                if (newRow >= 0 && newRow < this.rows && newCol >= 0 && newCol < this.columns) {
+                    const newIndex = newRow * this.columns + newCol;
+                    adjacent.push(newIndex);
+                }
+            }
+        }
+
+        console.log(adjacent);
+
+        return adjacent;
     };
 
     // Returns a random int in the given max range
