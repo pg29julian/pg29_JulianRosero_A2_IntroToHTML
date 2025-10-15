@@ -28,7 +28,7 @@
 body {
     /* Grid background design */
     margin: 0px;
-    height: 100vh;
+    height: fit-content;
     background-color: #0a0a0a;
     background-image: linear-gradient(#ff8800 1px, transparent 1px), linear-gradient(90deg, #ff8800 1px, transparent 1px);
     background-size: 50px 50px, 50px 50px;
@@ -141,7 +141,6 @@ button {
     border-bottom-color: #66faff;
     padding: 0;
     margin: 25px;
-    height: 500px;
     color: #00f0ff;
 }
 
@@ -186,21 +185,18 @@ button {
 .game-container {
     background-color: #111111;
     border-style: solid;
-    border-width: 0px;
+    border-width: 6px;
     border-left-color: #00a3d9;
     border-top-color: #00a3d9;
     border-right-color: #66faff;
     border-bottom-color: #66faff;
-    padding: 30px;
-    margin: 0;
+    padding: 5px;
+    margin: 10px;
     text-align: center;
     font-size: large;
     color: #ff8800;
-}
-
-.game-container.flex-container {
-    display: flex;
-    flex-grow: 1;
+    width: fit-content;
+    height: fit-content;
 }
 
 /* Navegation list class */
@@ -223,9 +219,36 @@ button {
         display: inline;
     }
 
+.cell {
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 1px;
+    margin: 1px;
+    font-size: 2em;
+    background-color: #00f0ff;
+    border-style: solid;
+    border-width: 4px;
+    border-left-color: #00a3d9;
+    border-top-color: #00a3d9;
+    border-right-color: #66faff;
+    border-bottom-color: #66faff;
+}
+
 /* ID Selectors */
 
 #copy-notice-section {
     color: #ff8800;
     text-shadow: 0 0 7px #ff6600;
+}
+
+#board {
+    display: grid;
+    grid-gap: 2px;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
 }
