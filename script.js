@@ -5,6 +5,7 @@ class Minesweeper {
         // Variables
 
         this.amountOfMines = 0;
+        this.flaggedCells = 0;
 
         this.cellsNumber = 0;
         this.rows = 0;
@@ -40,6 +41,7 @@ class Minesweeper {
 
         // Reset elements
 
+        this.flaggedCells = 0;
         this.revealedTiles = 0;
         this.cellsNumber = 0;
         this.cells = [];
@@ -82,7 +84,8 @@ class Minesweeper {
         this.boardElement.innerHTML = '';
 
         // Fill board info
-        document.getElementById('mines-count').innerText = this.amountOfMines;
+        this.flaggedCells = this.amountOfMines;
+        document.getElementById('mines-count').innerText = this.flaggedCells;
 
         // Fill board
         this.board.forEach((_, index) => {
@@ -160,17 +163,20 @@ class Minesweeper {
             this.revealAllMines();
             this.isGameOver = true;
 
-            //TODO: AT YOU LOST POP UP
+            alert("Ops! You stepped on a mine");
         }
         else {
 
             this.cleanCell(index, true);
 
             // If all safe tiles revealed, end game
+            console.log(this.revealedTiles)
+            console.log(this.cells.length - this.amountOfMines)
             if (this.revealedTiles == (this.cells.length - this.amountOfMines)) {
 
                 this.isGameOver = true;
-                //TODO: AT YOU WON POP UP
+
+                alert("You won!");
             };
         };
     };
@@ -185,11 +191,11 @@ class Minesweeper {
         let tile = this.cells[index];
 
         // Check if player is not able to flag another tile
-        if (this.amountOfMines <= 0) {
+        if (this.flaggedCells <= 0) {
             if (tile.innerText == "🚩") {
                 tile.classList.remove('flagged-cell');
                 tile.innerText = "";
-                this.amountOfMines++;
+                this.flaggedCells++;
                 return;
             }
             else return;
@@ -200,17 +206,17 @@ class Minesweeper {
 
             tile.classList.add('flagged-cell');
             tile.innerText = "🚩";
-            this.amountOfMines--;
+            this.flaggedCells--;
         }
         else if (tile.innerText == "🚩") {
 
             tile.classList.remove('flagged-cell');
             tile.innerText = "";
-            this.amountOfMines++;
+            this.flaggedCells++;
         };
 
         // Update mines counter
-        document.getElementById('mines-count').innerText = this.amountOfMines;
+        document.getElementById('mines-count').innerText = this.flaggedCells;
     };
 
     // Cleans a cell
@@ -218,6 +224,7 @@ class Minesweeper {
 
         // Add revealed class to the cell
         let tile = this.cells[index];
+        tile.classList.remove('flagged-cell');
         tile.classList.add('revealed-cell');
 
         // Add other classes depending on adjacent mines

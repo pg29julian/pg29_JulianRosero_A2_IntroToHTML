@@ -404,4 +404,10 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+#instructions {
+    color: #ff8800;
+    text-shadow: 0 0 7px #ff6600;
 }
