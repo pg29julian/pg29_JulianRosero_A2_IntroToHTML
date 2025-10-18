@@ -399,3 +399,9 @@ button {
     width: fit-content;
     height: fit-content;
 }
+
+#game-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

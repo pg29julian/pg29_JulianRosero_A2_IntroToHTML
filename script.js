@@ -315,8 +315,6 @@ class Minesweeper {
             }
         }
 
-        console.log(adjacent);
-
         return adjacent;
     };
 
