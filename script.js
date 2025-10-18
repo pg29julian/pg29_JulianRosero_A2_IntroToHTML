@@ -45,7 +45,7 @@ class Minesweeper {
         this.cells = [];
         this.mines = [];
         this.safeCells = [];
-
+        this.minesGenerated = false;
         this.isGameOver = false;
 
         // Init config depending on difficulty setting
@@ -164,8 +164,7 @@ class Minesweeper {
         }
         else {
 
-            this.cleanCell(index);
-            this.revealedTiles++;
+            this.cleanCell(index, true);
 
             // If all safe tiles revealed, end game
             if (this.revealedTiles == (this.cells.length - this.amountOfMines)) {
@@ -215,14 +214,14 @@ class Minesweeper {
     };
 
     // Cleans a cell
-    cleanCell = (index) => {
+    cleanCell = (index, checkNeighbours) => {
 
         // Add revealed class to the cell
         let tile = this.cells[index];
         tile.classList.add('revealed-cell');
 
         // Add other classes depending on adjacent mines
-        let neighbours = this.checkNeighbours(index);
+        let neighbours = this.checkNeighbourMines(index);
         switch (neighbours) {
             case 1:
                 tile.classList.add('revealed-x1-cell');
@@ -257,6 +256,10 @@ class Minesweeper {
                 tile.innerText = "8";
                 break;
         }
+
+        this.revealedTiles++;
+        this.safeCells.push(index);
+        if (checkNeighbours) this.checkNeighbours(index);
     };
 
     // Checks if a cell has a mine
@@ -268,6 +271,21 @@ class Minesweeper {
     // Checks the cells around a certain cell
     checkNeighbours = (index) => {
 
+        // Get adjacent cells
+        let adjacentCells = this.getAdjacentCells(index);
+
+        adjacentCells.forEach((cellIndex, _) => {
+
+            let neighbours = this.checkNeighbourMines(cellIndex);
+
+            if (!this.checkCell(cellIndex) && !this.safeCells.includes(cellIndex)) {
+                if (neighbours <= 0) this.cleanCell(cellIndex, true);
+                else this.cleanCell(cellIndex, false);
+            }
+        });
+    };
+
+    checkNeighbourMines = (index) => {
         let adjacentCells = this.getAdjacentCells(index);
 
         let foundMines = 0;
