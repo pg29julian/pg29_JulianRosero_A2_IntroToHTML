@@ -1,7 +1,7 @@
 # pg29_JulianRosero_A2_IntroToHTML
 
 Implemented by: PG29 - Julian Rosero
-Last Updated -> 10/03/2025
+Last Updated -> 10/20/2025
 
 ## About HTML Implementation
 
@@ -19,10 +19,10 @@ The page style is based on Tron Legacy and overall neon style, these are some re
 
 ### Libraries:
 
--> gameEngine: creates instances of all game components, no initialization is needed as the components auto initialize in the beginner difficulty
+- gameEngine: creates instances of all game components, no initialization is needed as the components auto initialize in the beginner difficulty
 
 ### Modules:
 
--> gameBoard: handles the board creation, set up and logic, is initialized by the gameLogic module.
--> gmaeLogic: handles level initialization, reset and calls interactions in gameBoard.
--> userInput: handles user interaction with the page and the game board.
+-  gameLogic: handles level initialization, reset and calls interactions in gameBoard.
+-  gameBoard: handles the board creation, set up and logic, is initialized by the gameLogic module.
+-  userInput: handles user interaction with the page and the game board.
