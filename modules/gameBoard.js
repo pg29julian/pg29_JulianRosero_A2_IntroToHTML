@@ -63,7 +63,7 @@ class GameBoard {
 
         // Fill board info
         this.flaggedCells = this.amountOfMines;
-        document.getElementById('mines-count').innerText = this.flaggedCells;
+        document.querySelector('#mines-count').innerText = this.flaggedCells;
     }
 
     // Generates mines in the board
@@ -144,7 +144,7 @@ class GameBoard {
         };
 
         // Update mines counter
-        document.getElementById('mines-count').innerText = this.flaggedCells;
+        document.querySelector('#mines-count').innerText = this.flaggedCells;
     }
 
     // Cleans a cell
