@@ -14,3 +14,15 @@ The page style is based on Tron Legacy and overall neon style, these are some re
 - Background is implemented to appear as "the grid", using two linear-gradients.
 - All page boxes and buttons are implemented to appear as classic mineswepper style boxes but make use of the color pallete of Tron.
 - Shadows in texts are used to give the sensation of Neon lights.
+
+## About JavaScript Implementation
+
+### Libraries:
+
+-> gameEngine: creates instances of all game components, no initialization is needed as the components auto initialize in the beginner difficulty
+
+### Modules:
+
+-> gameBoard: handles the board creation, set up and logic, is initialized by the gameLogic module.
+-> gmaeLogic: handles level initialization, reset and calls interactions in gameBoard.
+-> userInput: handles user interaction with the page and the game board.
